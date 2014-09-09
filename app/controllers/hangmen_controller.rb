@@ -6,6 +6,9 @@ class HangmenController < ApplicationController
   end
 
   def show
+    if params[:cheat]
+      raise "Stop it"
+    end
     @hangman = current_user.hangmen.find params[:id]
   end
 
@@ -18,5 +21,8 @@ class HangmenController < ApplicationController
     hangman = current_user.hangmen.find params[:id]
     hangman.guess params[:guess] unless hangman.finished?
     redirect_to hangman
+  end
+
+  def ajax_test
   end
 end
